@@ -1,3 +1,8 @@
+venv
 .venv
-*/.venv
+**/venv
+**/.venv
+**/.pyc
+**/.idea
 .vscode
+**/.vscode
