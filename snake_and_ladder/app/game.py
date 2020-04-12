@@ -26,9 +26,21 @@ class Game(GameInterface):
         self._current_player_index: int = 0
         self._moves: List[MoveInterface] = []
 
+    def reset(self) -> None:
+        self.board.reset()
+        self._moves = []
+        self._winner = None
+        self._current_player_index = 0
+        for player in self._players:
+            player.current_box = self.board.get_box(0)
+
     @property
     def board(self):
         return self._board
+
+    @property
+    def moves(self) -> List[MoveInterface]:
+        return self._moves
 
     def _get_next_player(self, curr_player_index):
         curr_player_index = self._players.index(curr_player_index) + 1
@@ -57,6 +69,7 @@ class Game(GameInterface):
             dice_value = roll_dice()
             move = Move(self, current_player, dice_value)
             move.invoke()
+            self._moves.append(move)
             if current_player.current_box.position == 100:
                 self._winner = current_player
             current_player = self._get_next_player(current_player)

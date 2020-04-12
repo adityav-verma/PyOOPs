@@ -11,3 +11,7 @@ if __name__ == '__main__':
     g.add_snake(30, 6)
     g.add_ladder(4, 12)
     g.start_game()
+    print('---------------------------------')
+    for move in g.moves:
+        print(move)
+    g.reset()
