@@ -11,13 +11,13 @@ from app.player import Player
 
 
 class Game(GameInterface):
-    def __init__(self):
-        self._board = BoardFactory.create_board(100)
+    def __init__(self, size):
+        self._board = BoardFactory.create_board(size)
         self._players: List[PlayerInterface] = []
         self._winner: PlayerInterface = None
         self._current_player_index: int = 0
         self._moves: List[MoveInterface] = []
-        self._dice = DiceFactory.get_composite_dice(2)
+        self._dice = DiceFactory.get_dice()
 
     def reset(self) -> None:
         self.board.reset()
@@ -58,6 +58,9 @@ class Game(GameInterface):
 
         current_player = self._players[0]
         while not self._winner:
+            # For handling things like, multiple moves, and rollbacks, we might
+            # want to have a separate strategy class which takes Game as an input
+            # plays the logic
             print(f'Current {current_player}')
             dice_value = self._dice.roll()
             move = Move(self, current_player, dice_value)
