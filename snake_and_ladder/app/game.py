@@ -3,6 +3,7 @@ import random
 from typing import List
 
 from app.board import Board
+from app.factories.box_factory import BoxFactory
 from app.factories.dice_factory import DiceFactory
 from app.interfaces.board_interface import BoardInterface
 from app.interfaces.game_interface import GameInterface
@@ -14,7 +15,7 @@ from app.player import Player
 
 class Game(GameInterface):
     def __init__(self):
-        self._board: BoardInterface = Board(100)
+        self._board: BoardInterface = Board(100, BoxFactory)
         self._players: List[PlayerInterface] = []
         self._winner: PlayerInterface = None
         self._current_player_index: int = 0

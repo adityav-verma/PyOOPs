@@ -1,5 +1,5 @@
 from app.dice import Dice, CompositeDice
-from app.interfaces.dice_factory_interface import DiceFactoryInterface
+from app.interfaces.factories.dice_factory_interface import DiceFactoryInterface
 from app.interfaces.dice_interface import DiceInterface
 
 
