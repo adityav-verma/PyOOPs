@@ -13,7 +13,9 @@ from app.player import Player
 
 # TODO: move to an external implementation, composite pattern maybe
 def roll_dice():
-    return random.randint(1, 6)
+    value = random.randint(1, 6)
+    print(f'Dice roll gave : {value}')
+    return value
 
 
 class Game(GameInterface):
@@ -46,15 +48,15 @@ class Game(GameInterface):
 
     def start_game(self):
         if len(self._players) < 2:
-            print('Cannot start game without players, please add at-least 2 and try again!')
+            print('Cannot start game, please add at-least 2 players and try again!')
+            return
 
         current_player = self._players[0]
         while not self._winner:
+            print(f'Current {current_player}')
             dice_value = roll_dice()
-            print(f'{current_player} rolled a dice for value {dice_value}')
             move = Move(self, current_player, dice_value)
             move.invoke()
-            print(f'{current_player}')
             if current_player.current_box.position == 100:
                 self._winner = current_player
             current_player = self._get_next_player(current_player)

@@ -7,7 +7,7 @@ class Box(BoxInterface):
         self._position = position
 
     def __str__(self):
-        return f'Box: current: {self.position}, next: {self.next_position()}'
+        return f'Box: {self.position}, next -> {self.next_position()}'
 
     @property
     def position(self):
@@ -25,6 +25,9 @@ class Snake(Box):
     def next_position(self):
         return self.next
 
+    def __str__(self):
+        return f'Snake: {self.position}, next -> {self.next_position()}'
+
 
 class Ladder(Box):
     def __init__(self, position, next=0):
@@ -33,3 +36,6 @@ class Ladder(Box):
 
     def next_position(self):
         return self.next
+
+    def __str__(self):
+        return f'Ladder: {self.position}, next -> {self.next_position()}'

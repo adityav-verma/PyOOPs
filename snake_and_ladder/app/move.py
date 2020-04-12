@@ -1,3 +1,4 @@
+from app.exceptions.exceptions import InvalidPosition
 from app.interfaces.game_interface import GameInterface
 from app.interfaces.move_interface import MoveInterface
 from app.interfaces.player_interface import PlayerInterface
@@ -16,10 +17,12 @@ class Move(MoveInterface):
         try:
             current_box = self.player.current_box
             while current_box != self.game.board.get_box(next_box_index):
+                print(current_box)
                 current_box = self.game.board.get_box(next_box_index)
                 next_box_index = current_box.next_position()
             self.player.current_box = current_box
-        except Exception:
+            print(current_box)
+        except InvalidPosition:
             print(f'Player: {self.player} cannot move {self.steps} steps, skipping')
             self.success = False
             return

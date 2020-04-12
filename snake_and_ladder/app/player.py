@@ -8,7 +8,7 @@ class Player(PlayerInterface):
         self._box: BoxInterface = None
 
     def __str__(self):
-        return f'Player: {self.name} is on box: {self.current_box}'
+        return f'Player: {self.name}'
 
     @property
     def name(self):

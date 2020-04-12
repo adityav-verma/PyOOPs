@@ -1,6 +1,7 @@
 from typing import List
 
 from app.box import Box, Snake, Ladder
+from app.exceptions.exceptions import InvalidPosition
 from app.interfaces.board_interface import BoardInterface
 from app.interfaces.box_interface import BoxInterface
 
@@ -12,7 +13,7 @@ class Board(BoardInterface):
 
     def _validate_index(self, index):
         if index < 0 or index >= len(self.boxes):
-            raise Exception('Invalid index for box')
+            raise InvalidPosition('Invalid index for box')
 
     def add_snake(self, start: int, end: int):
         self._validate_index(start)
