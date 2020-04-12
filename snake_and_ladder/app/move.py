@@ -35,4 +35,6 @@ class Move(MoveInterface):
         self._final_box = current_box
 
     def undo(self):
-        pass
+        if not self.success:
+            raise Exception('Cannot undo move, move did not complete')
+        self.player.current_box = self._initial_box
