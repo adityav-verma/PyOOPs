@@ -1,7 +1,7 @@
 from app.game import Game
 
 if __name__ == '__main__':
-    file = open('input.txt')
+    file = open('./input.txt')
 
     size = int(file.readline())
     g = Game(size)
