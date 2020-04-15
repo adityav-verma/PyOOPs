@@ -12,6 +12,10 @@ class Board(BoardInterface):
         self.boxes: List[BoxInterface or None] = [None for _ in range(size + 1)]
         self.reset()
 
+    @property
+    def size(self):
+        return len(self.boxes) - 1
+
     def _validate_index(self, index):
         if index < 0 or index >= len(self.boxes):
             raise InvalidPosition('Invalid index for box')

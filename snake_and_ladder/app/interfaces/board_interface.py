@@ -6,6 +6,10 @@ from app.interfaces.box_interface import BoxInterface
 
 
 class BoardInterface(ABC):
+    @property
+    @abstractmethod
+    def size(self) -> int: pass
+
     @abstractmethod
     def add_snake(self, start: int, end: int): pass
 
