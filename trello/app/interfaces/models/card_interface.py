@@ -22,9 +22,10 @@ class CardInterface(ABC):
     @abstractmethod
     def parent_list(self) -> BoardListInterface: pass
 
+    @property
     @abstractmethod
-    def assign_user(self, user: User) -> None: pass
+    def user(self) ->  None: pass
 
+    @user.setter
     @abstractmethod
-    def un_assign_user(self, user: User) -> None: pass
-
+    def user(self, user: User) -> None: pass
