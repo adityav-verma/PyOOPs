@@ -3,10 +3,7 @@ from app.managers.board_list_manager import BoardListManager
 from app.managers.board_manager import BoardManager
 from app.managers.card_manager import CardManager
 from app.managers.dict_printer import DictPrinter
-
-
-class User(object):
-    pass
+from app.models.user import User
 
 
 class Trello:

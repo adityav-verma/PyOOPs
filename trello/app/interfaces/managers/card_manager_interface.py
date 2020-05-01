@@ -1,11 +1,7 @@
-from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING
 
 from app.interfaces.models.card_interface import CardInterface
-
-if TYPE_CHECKING:
-    from app.trello import User
+from app.models.user import User
 
 
 class CardManagerInterface(ABC):

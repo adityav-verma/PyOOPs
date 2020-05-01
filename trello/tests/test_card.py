@@ -1,7 +1,8 @@
 import unittest
 
 from app.constants import BoardPrivacy
-from app.trello import Trello, User
+from app.trello import Trello
+from app.models.user import User
 
 
 class TestCard(unittest.TestCase):

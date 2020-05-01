@@ -1,14 +1,11 @@
-from __future__ import annotations
-from typing import Dict, TYPE_CHECKING
+from typing import Dict
 
 from app.constants import BoardPrivacy
 from app.interfaces.managers.board_manager_interface import BoardManagerInterface
 from app.interfaces.managers.printer_interface import PrinterInterface
 from app.interfaces.models.board_interface import BoardInterface
 from app.models.board import Board
-
-if TYPE_CHECKING:
-    from app.trello import User
+from app.models.user import User
 
 
 class BoardManager(BoardManagerInterface):

@@ -3,9 +3,10 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
+from app.models.user import User
+
 if TYPE_CHECKING:
     from app.interfaces.models.board_list_inteface import BoardListInterface
-    from app.trello import User
 
 
 class CardInterface(ABC):
