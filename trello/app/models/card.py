@@ -1,8 +1,12 @@
+from __future__ import annotations
 import uuid
+from typing import TYPE_CHECKING
 
 from app.interfaces.models.board_list_inteface import BoardListInterface
 from app.interfaces.models.card_interface import CardInterface
-from app.trello import User
+
+if TYPE_CHECKING:
+    from app.trello import User
 
 
 class Card(CardInterface):

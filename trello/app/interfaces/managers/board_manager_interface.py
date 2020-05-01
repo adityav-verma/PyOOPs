@@ -1,8 +1,13 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING
 
 from app.constants import BoardPrivacy
 from app.interfaces.models.board_interface import BoardInterface
-from app.trello import User
+
+if TYPE_CHECKING:
+    from app.trello import User
 
 
 class BoardManagerInterface(ABC):

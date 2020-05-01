@@ -1,10 +1,13 @@
+from __future__ import annotations
 import uuid
-from typing import List
+from typing import List, TYPE_CHECKING
 
 from app.constants import BoardPrivacy
 from app.interfaces.models.board_interface import BoardInterface
 from app.interfaces.models.board_list_inteface import BoardListInterface
-from app.trello import User
+
+if TYPE_CHECKING:
+    from app.trello import User
 
 
 class Board(BoardInterface):

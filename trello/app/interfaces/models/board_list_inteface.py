@@ -1,8 +1,11 @@
-from abc import ABC, abstractmethod
-from typing import List
+from __future__ import annotations
 
-from app.interfaces.models.board_interface import BoardInterface
+from abc import ABC, abstractmethod
+from typing import List, TYPE_CHECKING
+
 from app.interfaces.models.card_interface import CardInterface
+if TYPE_CHECKING:
+    from app.interfaces.models.board_interface import BoardInterface
 
 
 class BoardListInterface(ABC):
