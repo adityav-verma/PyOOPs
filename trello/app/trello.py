@@ -8,7 +8,7 @@ class User(object):
 class Trello:
     def create_board(self, name: str, privacy: BoardPrivacy) -> str: pass
 
-    def update_board(self, name: str, privacy: BoardPrivacy) -> str: pass
+    def update_board(self, id: str, name: str, privacy: BoardPrivacy) -> str: pass
 
     def show_board(self, id: str) -> dict: pass
 

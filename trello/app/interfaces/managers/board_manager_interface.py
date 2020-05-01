@@ -5,13 +5,13 @@ from app.interfaces.models.board_interface import BoardInterface
 from app.trello import User
 
 
-class BoardManager(ABC):
+class BoardManagerInterface(ABC):
 
     @abstractmethod
     def create_board(self, name: str, privacy: BoardPrivacy) -> str: pass
 
     @abstractmethod
-    def update_board(self, name: str, privacy: BoardPrivacy) -> str: pass
+    def update_board(self, id: str, name: str, privacy: BoardPrivacy) -> str: pass
 
     @abstractmethod
     def show_board(self, id: str) -> dict: pass

@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from app.interfaces.models.board_list_inteface import BoardListInterface
 
 
-class BoardListManager(ABC):
+class BoardListManagerInterface(ABC):
 
     @abstractmethod
     def create_list(self, name: str, board_id: str) -> str: pass

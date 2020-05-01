@@ -23,9 +23,17 @@ class Board(BoardInterface):
     def name(self) -> str:
         return self._name
 
+    @name.setter
+    def name(self, value: str) -> None:
+        self._name = value
+
     @property
     def privacy(self) -> BoardPrivacy:
         return self._privacy
+
+    @privacy.setter
+    def privacy(self, value: BoardPrivacy) -> None:
+        self._privacy = value
 
     @property
     def url(self) -> str:

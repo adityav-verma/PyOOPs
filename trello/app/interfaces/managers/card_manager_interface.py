@@ -4,7 +4,7 @@ from app.interfaces.models.card_interface import CardInterface
 from app.trello import User
 
 
-class CardManager(ABC):
+class CardManagerInterface(ABC):
 
     @abstractmethod
     def create_card(self, name: str, description: str, list_id: str) -> str: pass
