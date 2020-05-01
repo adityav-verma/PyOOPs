@@ -17,6 +17,9 @@ class BoardListManager(BoardListManagerInterface):
         # TODO: Add a factory
         board = self._board_manager.get_board(board_id)
         board_list = BoardList(name, board)
+
+        board.add_board_list(board_list)
+
         self._lists[board_list.id] = board_list
         return board_list.id
 
@@ -26,7 +29,7 @@ class BoardListManager(BoardListManagerInterface):
         return {
             'id': board_list.id,
             'name': board_list.name,
-            'cards': []
+            'cards': [c.id for c in board_list.cards]
         }
 
     def delete_list(self, id: str) -> None:

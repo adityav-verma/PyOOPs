@@ -37,7 +37,8 @@ class TestBoardAPIs(unittest.TestCase):
             'id': board_id,
             'name': new_name,
             'privacy': new_privacy.value,
-            'members': []
+            'members': [],
+            'board_lists': []
         }
 
         show_board_repsonse = self.api.show_board(board_id)
@@ -52,7 +53,8 @@ class TestBoardAPIs(unittest.TestCase):
             'id': board_id,
             'name': name,
             'privacy': privacy.value,
-            'members': []
+            'members': [],
+            'board_lists': []
         }
 
         show_board_repsonse = self.api.show_board(board_id)
@@ -72,7 +74,8 @@ class TestBoardAPIs(unittest.TestCase):
             'id': board_id,
             'name': name,
             'privacy': privacy.value,
-            'members': [user, user2]
+            'members': [user, user2],
+            'board_lists': []
         }
         show_board_repsonse = self.api.show_board(board_id)
         self.assertEqual(show_board, show_board_repsonse)
@@ -92,7 +95,8 @@ class TestBoardAPIs(unittest.TestCase):
             'id': board_id,
             'name': name,
             'privacy': privacy.value,
-            'members': [user2]
+            'members': [user2],
+            'board_lists': []
         }
         show_board_repsonse = self.api.show_board(board_id)
         self.assertEqual(show_board, show_board_repsonse)
@@ -104,5 +108,20 @@ class TestBoardAPIs(unittest.TestCase):
         self.api.delete_board(board_id)
 
         show_board = {}
+        show_board_repsonse = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_repsonse)
+
+    def test_add_list_to_board(self):
+        name = 'Test Board'
+        privacy = BoardPrivacy.PRIVATE
+        board_id = self.api.create_board(name, privacy)
+        list_id = self.api.create_list('test list', board_id)
+        show_board = {
+            'id': board_id,
+            'name': name,
+            'privacy': privacy.value,
+            'members': [],
+            'board_lists': [list_id]
+        }
         show_board_repsonse = self.api.show_board(board_id)
         self.assertEqual(show_board, show_board_repsonse)

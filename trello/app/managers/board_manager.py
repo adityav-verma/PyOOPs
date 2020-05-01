@@ -35,12 +35,13 @@ class BoardManager(BoardManagerInterface):
         if id not in self._boards:
             return {}
         board = self._boards[id]
-        # TODO: Add lists
+        # TODO: Add lists, printing lists will add a cyclic dependency
         return {
             'id': board.id,
             'name': board.name,
             'privacy': board.privacy.value,
-            'members': board.members
+            'members': board.members,
+            'board_lists': [l.id for l in board.board_lists]
         }
 
     def delete_board(self, id: str) -> None:
