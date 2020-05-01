@@ -3,6 +3,7 @@ from typing import Dict, TYPE_CHECKING
 
 from app.constants import BoardPrivacy
 from app.interfaces.managers.board_manager_interface import BoardManagerInterface
+from app.interfaces.managers.printer_interface import PrinterInterface
 from app.interfaces.models.board_interface import BoardInterface
 from app.models.board import Board
 
@@ -14,8 +15,8 @@ class BoardManager(BoardManagerInterface):
     _boards: Dict[str, BoardInterface] = {}
 
     # Might want to pull this from a factory
-    def __init__(self):
-        pass
+    def __init__(self, printer: PrinterInterface):
+        self._printer = printer
 
     def create_board(self, name: str, privacy: BoardPrivacy) -> str:
         # Might want to use a builder/factory pattern, since we don't know the kwargs of init
@@ -35,14 +36,7 @@ class BoardManager(BoardManagerInterface):
         if id not in self._boards:
             return {}
         board = self._boards[id]
-        # TODO: Add lists, printing lists will add a cyclic dependency
-        return {
-            'id': board.id,
-            'name': board.name,
-            'privacy': board.privacy.value,
-            'members': board.members,
-            'board_lists': [l.id for l in board.board_lists]
-        }
+        return self._printer.print_board(board)
 
     def delete_board(self, id: str) -> None:
         # TODO: Delete lists

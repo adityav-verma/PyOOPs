@@ -35,7 +35,11 @@ class TestBoardLists(unittest.TestCase):
         card_id = self.api.create_card('Test card', 'test des', list_id)
         self.assertIsInstance(list_id, str)
 
-        show_list = {'id': list_id, 'name': name, 'cards': [card_id]}
+        show_list = {
+            'id': list_id, 'name': name, 'cards': [
+                {'id': card_id, 'name': 'Test card', 'description': 'test des', 'user': None}
+            ]
+        }
 
         show_list_response = self.api.show_list(list_id)
         self.assertEqual(show_list, show_list_response)

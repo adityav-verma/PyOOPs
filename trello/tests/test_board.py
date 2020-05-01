@@ -18,11 +18,12 @@ class TestBoardAPIs(unittest.TestCase):
             'id': response,
             'name': name,
             'privacy': privacy.value,
+            'board_lists': [],
             'members': []
         }
 
-        show_board_repsonse = self.api.show_board(response)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(response)
+        self.assertEqual(show_board, show_board_response)
 
     def test_board_update(self):
         name = 'Test Board'
@@ -41,8 +42,8 @@ class TestBoardAPIs(unittest.TestCase):
             'board_lists': []
         }
 
-        show_board_repsonse = self.api.show_board(board_id)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_response)
 
     def test_show_board(self):
         name = 'Test Board'
@@ -57,8 +58,8 @@ class TestBoardAPIs(unittest.TestCase):
             'board_lists': []
         }
 
-        show_board_repsonse = self.api.show_board(board_id)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_response)
 
     def test_add_member(self):
         name = 'Test Board'
@@ -77,8 +78,8 @@ class TestBoardAPIs(unittest.TestCase):
             'members': [user, user2],
             'board_lists': []
         }
-        show_board_repsonse = self.api.show_board(board_id)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_response)
 
     def test_remove_member(self):
         name = 'Test Board'
@@ -98,8 +99,8 @@ class TestBoardAPIs(unittest.TestCase):
             'members': [user2],
             'board_lists': []
         }
-        show_board_repsonse = self.api.show_board(board_id)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_response)
 
     def test_delete_board(self):
         name = 'Test Board'
@@ -108,8 +109,8 @@ class TestBoardAPIs(unittest.TestCase):
         self.api.delete_board(board_id)
 
         show_board = {}
-        show_board_repsonse = self.api.show_board(board_id)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_response)
 
     def test_add_list_to_board(self):
         name = 'Test Board'
@@ -121,7 +122,9 @@ class TestBoardAPIs(unittest.TestCase):
             'name': name,
             'privacy': privacy.value,
             'members': [],
-            'board_lists': [list_id]
+            'board_lists': [
+                {'id': list_id, 'name': 'test list', 'cards': []}
+            ]
         }
-        show_board_repsonse = self.api.show_board(board_id)
-        self.assertEqual(show_board, show_board_repsonse)
+        show_board_response = self.api.show_board(board_id)
+        self.assertEqual(show_board, show_board_response)

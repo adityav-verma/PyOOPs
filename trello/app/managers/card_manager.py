@@ -3,6 +3,7 @@ from typing import Dict, TYPE_CHECKING
 
 from app.interfaces.managers.board_list_manager_interface import BoardListManagerInterface
 from app.interfaces.managers.card_manager_interface import CardManagerInterface
+from app.interfaces.managers.printer_interface import PrinterInterface
 from app.interfaces.models.card_interface import CardInterface
 from app.models.card import Card
 
@@ -13,8 +14,9 @@ if TYPE_CHECKING:
 class CardManager(CardManagerInterface):
     _cards: Dict[str, CardInterface] = {}
 
-    def __init__(self, list_manager: BoardListManagerInterface):
+    def __init__(self, list_manager: BoardListManagerInterface, printer: PrinterInterface):
         self._list_manager = list_manager
+        self._printer = printer
 
     def create_card(self, name: str, description: str, list_id: str) -> str:
         board_list = self._list_manager.get_board_list(list_id)
@@ -38,12 +40,7 @@ class CardManager(CardManagerInterface):
         if id not in self._cards:
             return {}
         card = self._cards[id]
-        return {
-            'id': card.id,
-            'name': card.name,
-            'description': card.description,
-            'user': card.user
-        }
+        return self._printer.print_board_card(card)
 
     def delete_card(self, id: str) -> None:
         self._cards.pop(id)
