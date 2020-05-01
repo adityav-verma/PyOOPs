@@ -35,6 +35,8 @@ class CardManager(CardManagerInterface):
         card.user = None
 
     def show_card(self, id: str) -> dict:
+        if id not in self._cards:
+            return {}
         card = self._cards[id]
         return {
             'id': card.id,

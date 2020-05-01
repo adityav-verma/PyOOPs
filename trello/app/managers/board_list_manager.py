@@ -24,6 +24,9 @@ class BoardListManager(BoardListManagerInterface):
         return board_list.id
 
     def show_list(self, id: str) -> dict:
+        if id not in self._lists:
+            return {}
+
         board_list = self._lists[id]
         # TODO: Add cards
         return {
@@ -33,6 +36,7 @@ class BoardListManager(BoardListManagerInterface):
         }
 
     def delete_list(self, id: str) -> None:
+        # TODO: delete cards
         self._lists.pop(id)
 
     def get_board_list(self, id: str) -> BoardListInterface:

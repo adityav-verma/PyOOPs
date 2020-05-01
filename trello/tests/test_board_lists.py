@@ -39,3 +39,18 @@ class TestBoardLists(unittest.TestCase):
 
         show_list_response = self.api.show_list(list_id)
         self.assertEqual(show_list, show_list_response)
+
+    def test_delete_list(self):
+        name = 'test list'
+        list_id = self.api.create_list(name, self.board_id)
+        self.assertIsInstance(list_id, str)
+
+        show_list = {'id': list_id, 'name': name, 'cards': []}
+
+        show_list_response = self.api.show_list(list_id)
+        self.assertEqual(show_list, show_list_response)
+
+        self.api.delete_list(list_id)
+        show_list = {}
+        show_list_response = self.api.show_list(list_id)
+        self.assertEqual(show_list, show_list_response)
