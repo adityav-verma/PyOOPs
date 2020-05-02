@@ -1,10 +1,9 @@
 import uuid
-from typing import List, Union
+from typing import List
 
 from app.constants import BoardPrivacy
 from app.interfaces.models.board_interface import BoardInterface
 from app.interfaces.models.board_list_inteface import BoardListInterface
-from app.interfaces.models.component_interface import Component
 from app.models.user import User
 
 
@@ -14,21 +13,7 @@ class Board(BoardInterface):
         self._name = name
         self._privacy = privacy
         self._members: List[User] = []
-        self._board_lists: List[Component] = []
-
-    @property
-    def parent(self) -> Union[Component, None]:
-        return None
-
-    @property
-    def children(self) -> List[Component]:
-        return self._board_lists
-
-    def add_child_component(self, child: Component) -> None:
-        self._board_lists.append(child)
-
-    def remove_child_component(self, child: Component) -> None:
-        self._board_lists.remove(child)
+        self._board_lists: List[BoardListInterface] = []
 
     @property
     def id(self) -> str:
@@ -58,8 +43,18 @@ class Board(BoardInterface):
     def members(self) -> List[User]:
         return self._members
 
+    @property
+    def board_lists(self) -> List[BoardListInterface]:
+        return self._board_lists
+
     def add_member(self, user: User) -> None:
         self._members.append(user)
 
+    def add_board_list(self, board_list: BoardListInterface) -> None:
+        self._board_lists.append(board_list)
+
     def remove_member(self, user: User) -> None:
         self._members.remove(user)
+
+    def remove_board_list(self, board_list: BoardListInterface) -> None:
+        self._board_lists.remove(board_list)

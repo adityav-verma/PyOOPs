@@ -18,8 +18,6 @@ class BoardManager(BoardManagerInterface):
     def create_board(self, name: str, privacy: BoardPrivacy) -> str:
         # Might want to use a builder/factory pattern, since we don't know the kwargs of init
         # TODO: Move to factory
-        # Creational patterns make sure, that your system is written in terms of
-        # interfaces, not implementations
         board = Board(name, privacy)
         self._boards[board.id] = board
         return board.id
