@@ -12,7 +12,7 @@ class DictPrinter(PrinterInterface):
             'privacy': board.privacy.value,
             'members': board.members,
             'board_lists': [
-                self.print_board_list(item) for item in board.board_lists
+                self.print_board_list(item) for item in board.children
             ]
         }
 
@@ -21,7 +21,7 @@ class DictPrinter(PrinterInterface):
             'id': board_list.id,
             'name': board_list.name,
             'cards': [
-                self.print_board_card(item) for item in board_list.cards
+                self.print_board_card(item) for item in board_list.children
             ]
         }
 

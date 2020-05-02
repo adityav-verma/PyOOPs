@@ -20,7 +20,7 @@ class BoardListManager(BoardListManagerInterface):
         board = self._board_manager.get_board(board_id)
         board_list = BoardList(name, board)
 
-        board.add_board_list(board_list)
+        board.add_child_component(board_list)
 
         self._lists[board_list.id] = board_list
         return board_list.id

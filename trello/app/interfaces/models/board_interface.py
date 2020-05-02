@@ -3,22 +3,11 @@ from typing import List
 
 from app.constants import BoardPrivacy
 from app.interfaces.models.board_list_inteface import BoardListInterface
+from app.interfaces.models.component_interface import Component
 from app.models.user import User
 
 
-class BoardInterface(ABC):
-
-    @property
-    @abstractmethod
-    def id(self) -> str: pass
-
-    @property
-    @abstractmethod
-    def name(self) -> str: pass
-
-    @name.setter
-    @abstractmethod
-    def name(self, value: str) -> None: pass
+class BoardInterface(Component, ABC):
 
     @property
     @abstractmethod
@@ -36,18 +25,9 @@ class BoardInterface(ABC):
     @abstractmethod
     def members(self) -> List[User]: pass
 
-    @property
-    @abstractmethod
-    def board_lists(self) -> List[BoardListInterface]: pass
-
     @abstractmethod
     def add_member(self, user: User) -> None: pass
 
     @abstractmethod
-    def add_board_list(self, board_list: BoardListInterface) -> None: pass
-
-    @abstractmethod
     def remove_member(self, user: User) -> None: pass
 
-    @abstractmethod
-    def remove_board_list(self, board_list: BoardListInterface) -> None: pass

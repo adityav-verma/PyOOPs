@@ -19,7 +19,7 @@ class CardManager(CardManagerInterface):
         board_list = self._list_manager.get_board_list(list_id)
         card = Card(name, description, board_list)
 
-        board_list.add_card(card)
+        board_list.add_child_component(card)
 
         self._cards[card.id] = card
         return card.id
