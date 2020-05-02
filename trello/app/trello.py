@@ -1,4 +1,5 @@
 from app.constants import BoardPrivacy
+from app.factories.simple_component_factory import SimpleComponentFactory
 from app.managers.board_list_manager import BoardListManager
 from app.managers.board_manager import BoardManager
 from app.managers.card_manager import CardManager
@@ -8,10 +9,17 @@ from app.models.user import User
 
 class Trello:
     def __init__(self):
-        # TODO: Use dependency injection here
-        self._board_manager = BoardManager(printer=DictPrinter())
-        self._list_manager = BoardListManager(self._board_manager, printer=DictPrinter())
-        self._card_manager = CardManager(self._list_manager, printer=DictPrinter())
+        self._board_manager = BoardManager(
+            component_factory=SimpleComponentFactory(), printer=DictPrinter()
+        )
+        self._list_manager = BoardListManager(
+            component_factory=SimpleComponentFactory(), board_manager=self._board_manager,
+            printer=DictPrinter()
+        )
+        self._card_manager = CardManager(
+            component_factory=SimpleComponentFactory(), list_manager=self._list_manager,
+            printer=DictPrinter()
+        )
 
     def create_board(self, name: str, privacy: BoardPrivacy) -> str:
         return self._board_manager.create_board(name, privacy)

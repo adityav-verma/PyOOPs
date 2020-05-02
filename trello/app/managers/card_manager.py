@@ -1,23 +1,26 @@
 from typing import Dict
 
+from app.interfaces.factories.component_factory import ComponentFactory
 from app.interfaces.managers.board_list_manager_interface import BoardListManagerInterface
 from app.interfaces.managers.card_manager_interface import CardManagerInterface
 from app.interfaces.managers.printer_interface import PrinterInterface
 from app.interfaces.models.card_interface import CardInterface
-from app.models.card import Card
 from app.models.user import User
 
 
 class CardManager(CardManagerInterface):
     _cards: Dict[str, CardInterface] = {}
 
-    def __init__(self, list_manager: BoardListManagerInterface, printer: PrinterInterface):
+    def __init__(
+            self, component_factory: ComponentFactory, list_manager: BoardListManagerInterface,
+            printer: PrinterInterface):
+        self._component_factory = component_factory
         self._list_manager = list_manager
         self._printer = printer
 
     def create_card(self, name: str, description: str, list_id: str) -> str:
         board_list = self._list_manager.get_board_list(list_id)
-        card = Card(name, description, board_list)
+        card = self._component_factory.create_card(name, description, board_list)
 
         board_list.add_card(card)
 

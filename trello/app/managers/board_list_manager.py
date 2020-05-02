@@ -1,24 +1,27 @@
 from typing import Dict
 
+from app.interfaces.factories.component_factory import ComponentFactory
 from app.interfaces.managers.board_list_manager_interface import BoardListManagerInterface
 from app.interfaces.managers.board_manager_interface import BoardManagerInterface
 from app.interfaces.managers.printer_interface import PrinterInterface
 from app.interfaces.models.board_list_inteface import BoardListInterface
-from app.models.board_list import BoardList
 
 
 class BoardListManager(BoardListManagerInterface):
 
     _lists: Dict[str, BoardListInterface] = {}
 
-    def __init__(self, board_manager: BoardManagerInterface, printer: PrinterInterface):
+    def __init__(
+            self, component_factory: ComponentFactory, board_manager: BoardManagerInterface,
+            printer: PrinterInterface):
+        self._component_factory = component_factory
         self._board_manager = board_manager
         self._printer = printer
 
     def create_list(self, name: str, board_id: str) -> str:
         # TODO: Add a factory
         board = self._board_manager.get_board(board_id)
-        board_list = BoardList(name, board)
+        board_list = self._component_factory.create_board_list(name, board)
 
         board.add_board_list(board_list)
 
