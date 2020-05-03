@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from typing import Dict, List
 
 from app.interfaces.load_balancer_interface import LoadBalancerInterface
@@ -9,7 +10,7 @@ class GenericLoadBalancer(LoadBalancerInterface):
 
     def __init__(self, load_balancing_strategy: LoadBalancingStrategyInterface):
         self._strategy = load_balancing_strategy
-        self._servers: Dict[str, ServerInterface] = {}
+        self._servers: Dict[str, ServerInterface] = OrderedDict()
 
     def _cleanup(self):
         for server_id, server in self._servers.items():
