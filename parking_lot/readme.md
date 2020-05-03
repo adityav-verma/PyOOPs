@@ -1,11 +1,8 @@
 # Design a Parking Lot
 ## Requirements?
 - The parking lot should have multiple floors where the customers can park their cars
-- The parking lot should have multiple entry and exit points
 - Customers can collect parking ticket at the entry point and then can pay the price at the exit point
-- Customers can pay the tickets at the automated exit panel or to the parking attendant.
 - Customers can pay via both cash and credit cards.
-- Customers should also be able to pay the parking fee at the customer’s info portal on each floor. If the customer has paid at the info portal, they don’t have to pay at the exit.
 - The system should not allow more vehicles than the maximum capacity of the parking lot. If the parking is full, the system should be able to show a message at the entrance panel and on the parking display board on the ground floor.
 - Each parking floor will have many parking spots. The system should support multiple types of parking spots such as Compact, Large, Handicapped, Motorcycle, etc.
 - The Parking lot should have some parking spots specified for electric cars. These spots should have an electric panel through which customers can pay and charge their vehicles.
