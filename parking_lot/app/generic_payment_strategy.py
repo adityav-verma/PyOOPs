@@ -12,5 +12,5 @@ class GenericPaymentStrategy(PaymentStrategy):
     def get_charge(self, ticket: Ticket) -> int:
         curr_time = datetime.utcnow()
         diff = curr_time - ticket.issued_at
-        hour = ceil(diff.seconds // 60)
+        hour = ceil(diff.seconds / 60)
         return hour * self._hourly_charge
