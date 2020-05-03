@@ -1,7 +1,6 @@
 from abc import abstractmethod, ABC
 
 from app.interfaces.payment import Payment
-from app.interfaces.ticket import Ticket
 
 
 class CheckoutCommand(ABC):
