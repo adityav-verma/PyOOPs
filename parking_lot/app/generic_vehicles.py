@@ -11,6 +11,9 @@ class GenericVehicle(Vehicle):
         self._id = id
         self._ticket: Optional[Ticket ]= None
 
+    def __str__(self):
+        return f'Size: {self._size.value}'
+
     @property
     def id(self) -> str:
         return self._id

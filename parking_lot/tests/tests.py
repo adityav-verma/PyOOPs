@@ -10,6 +10,11 @@ from app.interfaces.ticket import Ticket
 
 
 class TestParkingLot(unittest.TestCase):
+    def tearDown(self) -> None:
+        for cmd in self.parking_lot._parking_commands:
+            print(cmd)
+        print('#### Test Finished ####')
+
     def setUp(self) -> None:
         factory = GenericFactory()
         parking_st = factory.create_parking_strategy()
@@ -34,12 +39,12 @@ class TestParkingLot(unittest.TestCase):
         )
         self.parking_lot.floors[0].add_spot(
             factory.create_parking_spot(
-                2, EntitySize.XLARGE, self.parking_lot.floors[0]
+                3, EntitySize.XLARGE, self.parking_lot.floors[0]
             )
         )
         self.parking_lot.floors[0].add_spot(
             factory.create_parking_spot(
-                2, EntitySize.XLARGE, self.parking_lot.floors[0]
+                4, EntitySize.XLARGE, self.parking_lot.floors[0]
             )
         )
 
@@ -55,12 +60,12 @@ class TestParkingLot(unittest.TestCase):
         )
         self.parking_lot.floors[1].add_spot(
             factory.create_parking_spot(
-                2, EntitySize.XLARGE, self.parking_lot.floors[1]
+                3, EntitySize.XLARGE, self.parking_lot.floors[1]
             )
         )
         self.parking_lot.floors[1].add_spot(
             factory.create_parking_spot(
-                2, EntitySize.XLARGE, self.parking_lot.floors[1]
+                4, EntitySize.XLARGE, self.parking_lot.floors[1]
             )
         )
 

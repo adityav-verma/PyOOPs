@@ -14,6 +14,9 @@ class GenericParkingSpot(ParkingSpot):
 
         self._vehicle: Optional[Vehicle] = None
 
+    def __str__(self):
+        return f'Id: {self._id}, Size: {self._size.value}, Floor: {self._floor.id}'
+
     @property
     def id(self) -> int:
         return self._id
