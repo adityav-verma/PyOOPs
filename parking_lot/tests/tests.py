@@ -7,7 +7,6 @@ from app.generic_vehicles import MotorBike, XLargeCard
 from app.interfaces.parking_spot import ParkingSpot
 from app.interfaces.payment import Payment
 from app.interfaces.ticket import Ticket
-from client import Client
 
 
 class TestParkingLot(unittest.TestCase):
@@ -98,3 +97,19 @@ class TestParkingLot(unittest.TestCase):
         payment = self.parking_lot.checkout(ticket)
         self.assertIsInstance(payment, Payment)
         self.assertEqual(payment.charge, 2)
+
+    def test_fill_checkout_park(self):
+        ticket = None
+        for i in range(8):
+            vehicle = MotorBike('1')
+            ticket = self.parking_lot.park(vehicle)
+        with self.assertRaises(Exception):
+            self.parking_lot.park(MotorBike('1'))
+        self.parking_lot.checkout(ticket)
+        vehicle = MotorBike('1')
+        ticket = self.parking_lot.park(vehicle)
+        self.assertIsInstance(ticket, Ticket)
+        self.assertEqual(ticket.vehicle, vehicle)
+        self.assertEqual(ticket.payment, None)
+        self.assertIsInstance(ticket.parking_spot, ParkingSpot)
+
