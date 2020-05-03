@@ -30,20 +30,27 @@ if __name__ == '__main__':
     for i in range(5):
         print(client.serve(str(i)))
 
-    print('#### Add server ###')
+    print('#### Add server S3, should sever all requests ###')
 
     client.add_sever(s3)
-    for i in range(10):
+    for i in range(30):
         print(client.serve(str(i)))
 
-    print('#### Add server ###')
+    print('#### Add server S1, S1 will be prioritized ###')
 
     client.add_sever(s1)
     for i in range(11):
         print(client.serve(str(i)))
 
-    print('#### Add server ###')
+    print('#### Add server S2, S1 and S2 will get priority over S3 ###')
 
     client.add_sever(s2)
     for i in range(50):
+        print(client.serve(str(i)))
+
+    print('#### Update factor of S1, S1 should get less requests ###')
+
+    s1.factor = 1
+
+    for i in range(100):
         print(client.serve(str(i)))
